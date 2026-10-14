@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f7f4">
+  <title>Papertrail — AI PDF Chat</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="/" aria-label="Papertrail home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 3.75h7l4.25 4.3v12.2H7a2 2 0 0 1-2-2v-12.5a2 2 0 0 1 2-2Z"/><path d="M14 4v4.5h4.5M8.5 12h7M8.5 15.5h7"/></svg></span>
+        <span>papertrail<span class="brand-dot">.</span></span>
+      </a>
+      <button class="new-chat" id="newChat"><span>＋</span> New conversation</button>
+      <div class="side-heading"><span>YOUR LIBRARY</span><button id="refreshDocs" class="icon-button" title="Refresh documents" aria-label="Refresh documents">↻</button></div>
+      <div class="document-list" id="documentList"><div class="empty-library">Your PDFs will appear here.</div></div>
+      <div class="sidebar-spacer"></div>
+      <div class="local-card"><span class="local-icon">⌂</span><div><strong>Private by design</strong><small>Runs on your computer</small></div><span class="status-dot" id="sideStatus"></span></div>
+      <div class="sidebar-footer">POWERED BY OLLAMA <span>·</span> LOCAL AI</div>
+    </aside>
+
+    <main class="main-panel">
+      <header class="topbar"><button id="mobileMenu" class="icon-button mobile-menu" aria-label="Toggle sidebar">☰</button><div class="topbar-label"><span class="status-dot" id="topStatus"></span><span id="modelLabel">Connecting to Ollama…</span></div><button class="about-button" id="aboutButton">About <span>↗</span></button></header>
+      <section class="conversation" id="conversation">
+        <div class="welcome" id="welcome">
+          <div class="welcome-kicker"><span class="sparkle">✳</span> YOUR PERSONAL RESEARCH DESK</div>
+          <h1>Good questions<br>deserve <em>good sources.</em></h1>
+          <p class="welcome-copy">Drop in a PDF and get clear, grounded answers with page references. Your documents stay right here on your computer.</p>
+          <button class="upload-card" id="uploadCard">
+            <span class="upload-symbol"><svg viewBox="0 0 24 24"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M5 14.5v4A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5v-4"/></svg></span>
+            <span class="upload-text"><strong>Choose a PDF to get started</strong><small>or drag and drop it here · up to 30 MB</small></span>
+            <span class="upload-arrow">↗</span>
+          </button>
+          <div class="suggestion-wrap"><span class="suggestion-label">THEN TRY ASKING</span><div class="suggestions"><button class="suggestion" data-question="What are the main ideas in this document?">What are the main ideas?</button><button class="suggestion" data-question="Summarize the key findings.">Summarize the key findings</button><button class="suggestion" data-question="What evidence or examples does the author give?">Find supporting evidence</button></div></div>
+        </div>
+        <div class="messages" id="messages" aria-live="polite"></div>
+      </section>
+      <footer class="composer-area">
+        <div class="upload-progress" id="uploadProgress" hidden><span class="mini-spinner"></span><span id="uploadMessage">Reading your PDF…</span></div>
+        <div class="composer" id="dropTarget"><button class="attach-button" id="attachButton" title="Add a PDF" aria-label="Add a PDF">＋</button><textarea id="questionInput" rows="1" placeholder="Ask something about your PDFs…" aria-label="Your question"></textarea><button class="send-button" id="sendButton" aria-label="Send question" disabled><svg viewBox="0 0 24 24"><path d="M12 19V5m0 0L6.5 10.5M12 5l5.5 5.5"/></svg></button></div>
+        <p class="privacy-note"><span>⌂</span> Your files stay on this device <i>·</i> Answers are generated locally by Ollama</p>
+      </footer>
+    </main>
+  </div>
+  <input type="file" id="fileInput" accept="application/pdf,.pdf" hidden>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
